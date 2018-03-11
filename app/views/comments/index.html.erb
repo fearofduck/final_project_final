@@ -18,7 +18,7 @@
       <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.user.email %></td>
-        <td><%= comment.forecast_id %></td>
+        <td><%= comment.forecast.ds53_growth %></td>
         <td><%= comment.body %></td>
         <td>
           <a href="/comments/<%= comment.id %>" class="btn btn-primary">Show</a>
