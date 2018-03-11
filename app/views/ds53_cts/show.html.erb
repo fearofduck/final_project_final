@@ -1,0 +1,64 @@
+<div class="page-header">
+  <h3>Ds53 Ct #<%= @ds53_ct.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Jan</dt>
+      <dd><%= @ds53_ct.jan %></dd>
+
+      <dt>Feb</dt>
+      <dd><%= @ds53_ct.feb %></dd>
+
+      <dt>Mar</dt>
+      <dd><%= @ds53_ct.mar %></dd>
+
+      <dt>Apr</dt>
+      <dd><%= @ds53_ct.apr %></dd>
+
+      <dt>May</dt>
+      <dd><%= @ds53_ct.may %></dd>
+
+      <dt>Jun</dt>
+      <dd><%= @ds53_ct.jun %></dd>
+
+      <dt>Jul</dt>
+      <dd><%= @ds53_ct.jul %></dd>
+
+      <dt>Aug</dt>
+      <dd><%= @ds53_ct.aug %></dd>
+
+      <dt>Sep</dt>
+      <dd><%= @ds53_ct.sep %></dd>
+
+      <dt>Oct</dt>
+      <dd><%= @ds53_ct.oct %></dd>
+
+      <dt>Nov</dt>
+      <dd><%= @ds53_ct.nov %></dd>
+
+      <dt>Dec</dt>
+      <dd><%= @ds53_ct.dec %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @ds53_ct.name %></dd>
+
+      <dt>User</dt>
+      <dd><%= @ds53_ct.user_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/ds53_cts" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/ds53_cts/<%= @ds53_ct.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_ds53_ct/<%= @ds53_ct.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

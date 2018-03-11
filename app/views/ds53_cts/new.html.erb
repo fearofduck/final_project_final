@@ -1,0 +1,154 @@
+<!-- Validation failure messages -->
+<% if @ds53_ct.errors.any? %>
+  <% @ds53_ct.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Ds53 Ct</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_ds53_ct" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for jan -->
+      <div class="form-group">
+        <label for="jan" class="control-label">
+          Jan
+        </label>
+
+        <input type="text" id="jan" name="jan" placeholder="Jan" class="form-control" value="<%= @ds53_ct.jan %>">
+      </div>
+
+      <!-- Label and input for feb -->
+      <div class="form-group">
+        <label for="feb" class="control-label">
+          Feb
+        </label>
+
+        <input type="text" id="feb" name="feb" placeholder="Feb" class="form-control" value="<%= @ds53_ct.feb %>">
+      </div>
+
+      <!-- Label and input for mar -->
+      <div class="form-group">
+        <label for="mar" class="control-label">
+          Mar
+        </label>
+
+        <input type="text" id="mar" name="mar" placeholder="Mar" class="form-control" value="<%= @ds53_ct.mar %>">
+      </div>
+
+      <!-- Label and input for apr -->
+      <div class="form-group">
+        <label for="apr" class="control-label">
+          Apr
+        </label>
+
+        <input type="text" id="apr" name="apr" placeholder="Apr" class="form-control" value="<%= @ds53_ct.apr %>">
+      </div>
+
+      <!-- Label and input for may -->
+      <div class="form-group">
+        <label for="may" class="control-label">
+          May
+        </label>
+
+        <input type="text" id="may" name="may" placeholder="May" class="form-control" value="<%= @ds53_ct.may %>">
+      </div>
+
+      <!-- Label and input for jun -->
+      <div class="form-group">
+        <label for="jun" class="control-label">
+          Jun
+        </label>
+
+        <input type="text" id="jun" name="jun" placeholder="Jun" class="form-control" value="<%= @ds53_ct.jun %>">
+      </div>
+
+      <!-- Label and input for jul -->
+      <div class="form-group">
+        <label for="jul" class="control-label">
+          Jul
+        </label>
+
+        <input type="text" id="jul" name="jul" placeholder="Jul" class="form-control" value="<%= @ds53_ct.jul %>">
+      </div>
+
+      <!-- Label and input for aug -->
+      <div class="form-group">
+        <label for="aug" class="control-label">
+          Aug
+        </label>
+
+        <input type="text" id="aug" name="aug" placeholder="Aug" class="form-control" value="<%= @ds53_ct.aug %>">
+      </div>
+
+      <!-- Label and input for sep -->
+      <div class="form-group">
+        <label for="sep" class="control-label">
+          Sep
+        </label>
+
+        <input type="text" id="sep" name="sep" placeholder="Sep" class="form-control" value="<%= @ds53_ct.sep %>">
+      </div>
+
+      <!-- Label and input for oct -->
+      <div class="form-group">
+        <label for="oct" class="control-label">
+          Oct
+        </label>
+
+        <input type="text" id="oct" name="oct" placeholder="Oct" class="form-control" value="<%= @ds53_ct.oct %>">
+      </div>
+
+      <!-- Label and input for nov -->
+      <div class="form-group">
+        <label for="nov" class="control-label">
+          Nov
+        </label>
+
+        <input type="text" id="nov" name="nov" placeholder="Nov" class="form-control" value="<%= @ds53_ct.nov %>">
+      </div>
+
+      <!-- Label and input for dec -->
+      <div class="form-group">
+        <label for="dec" class="control-label">
+          Dec
+        </label>
+
+        <input type="text" id="dec" name="dec" placeholder="Dec" class="form-control" value="<%= @ds53_ct.dec %>">
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @ds53_ct.name %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @ds53_ct.user_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Ds53 Ct
+      </button>
+      or
+      <a href="/ds53_cts">Cancel</a>
+    </form>
+  </div>
+</div>
