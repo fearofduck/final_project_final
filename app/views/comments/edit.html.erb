@@ -33,7 +33,7 @@
           Forecast
         </label>
 
-        <input type="text" id="forecast_id" name="forecast_id" placeholder="Forecast" class="form-control" value="<%= @comment.forecast_id %>">
+        <%= select_tag(:forecast_id, options_from_collection_for_select(Forecast.all, :id, :ds53_growth, @comment.forecast_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for body -->
