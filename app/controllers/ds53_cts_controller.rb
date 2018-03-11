@@ -10,7 +10,8 @@ class Ds53CtsController < ApplicationController
   end
 
   def index
-    @ds53_cts = Ds53Ct.page(params[:page]).per(10)
+    @q = Ds53Ct.ransack(params[:q])
+    @ds53_cts = @q.result(:distinct => true).includes(:user, :forecasts).page(params[:page]).per(10)
 
     render("ds53_cts/index.html.erb")
   end
