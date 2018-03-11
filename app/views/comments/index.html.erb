@@ -17,8 +17,20 @@
 
       <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.user.email %></td>
-        <td><%= comment.forecast.ds53_growth %></td>
+        <td>
+          <% if comment.user.present? %>
+            <a href="/users/<%= comment.user.id %>">
+              <%= comment.user.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if comment.forecast.present? %>
+            <a href="/forecasts/<%= comment.forecast.id %>">
+              <%= comment.forecast.ds53_growth %>
+            </a>
+          <% end %>
+        </td>
         <td><%= comment.body %></td>
         <td>
           <a href="/comments/<%= comment.id %>" class="btn btn-primary">Show</a>

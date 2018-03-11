@@ -41,7 +41,13 @@
         <td><%= ds53_ct.nov %></td>
         <td><%= ds53_ct.dec %></td>
         <td><%= ds53_ct.name %></td>
-        <td><%= ds53_ct.user.email %></td>
+        <td>
+          <% if ds53_ct.user.present? %>
+            <a href="/users/<%= ds53_ct.user.id %>">
+              <%= ds53_ct.user.email %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/ds53_cts/<%= ds53_ct.id %>" class="btn btn-primary">Show</a>
           

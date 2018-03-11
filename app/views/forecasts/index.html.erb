@@ -27,8 +27,20 @@
       <tr>
         <td><%= forecast.ds53_growth %></td>
         <td><%= forecast.ds40_growth %></td>
-        <td><%= forecast.ds53_ct.jan %></td>
-        <td><%= forecast.user.email %></td>
+        <td>
+          <% if forecast.ds53_ct.present? %>
+            <a href="/ds53_cts/<%= forecast.ds53_ct.id %>">
+              <%= forecast.ds53_ct.jan %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if forecast.user.present? %>
+            <a href="/users/<%= forecast.user.id %>">
+              <%= forecast.user.email %>
+            </a>
+          <% end %>
+        </td>
         <td><%= forecast.itl_in_53 %></td>
         <td><%= forecast.dc_in_conv %></td>
         <td><%= forecast.non_ttx_adds %></td>

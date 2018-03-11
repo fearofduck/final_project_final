@@ -12,10 +12,22 @@
       <dd><%= @forecast.ds40_growth %></dd>
 
       <dt>Ds53 ct</dt>
-      <dd><%= @forecast.ds53_ct_id %></dd>
+      <dd>
+        <% if @forecast.ds53_ct.present? %>
+          <a href="/ds53_cts/<%= @forecast.ds53_ct_id %>">
+            <%= @forecast.ds53_ct.jan %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>User</dt>
-      <dd><%= @forecast.user_id %></dd>
+      <dd>
+        <% if @forecast.user.present? %>
+          <a href="/users/<%= @forecast.user_id %>">
+            <%= @forecast.user.email %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Itl in 53</dt>
       <dd><%= @forecast.itl_in_53 %></dd>
