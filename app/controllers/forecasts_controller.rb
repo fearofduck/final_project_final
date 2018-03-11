@@ -6,6 +6,7 @@ class ForecastsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @forecast = Forecast.find(params[:id])
 
     render("forecasts/show.html.erb")

@@ -16,6 +16,7 @@ class Ds53CtsController < ApplicationController
   end
 
   def show
+    @forecast = Forecast.new
     @ds53_ct = Ds53Ct.find(params[:id])
 
     render("ds53_cts/show.html.erb")
