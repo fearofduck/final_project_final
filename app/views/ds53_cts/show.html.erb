@@ -53,12 +53,14 @@
       <a href="/ds53_cts" class="btn btn-primary">
         Back
       </a>
-      <a href="/ds53_cts/<%= @ds53_ct.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_ds53_ct/<%= @ds53_ct.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <% if current_user == @ds53_ct.user %>
+        <a href="/ds53_cts/<%= @ds53_ct.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/delete_ds53_ct/<%= @ds53_ct.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      <% end %>
     </div>
   </div>
 </div>

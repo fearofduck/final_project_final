@@ -1,4 +1,14 @@
 class Ds53CtsController < ApplicationController
+  before_action :current_user_must_be_ds53_ct_user, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_ds53_ct_user
+    ds53_ct = Ds53Ct.find(params[:id])
+
+    unless current_user == ds53_ct.user
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @ds53_cts = Ds53Ct.all
 
