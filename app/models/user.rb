@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :forecasts,
+             :dependent => :destroy
+
   has_many   :ds53_cts,
              :dependent => :destroy
 
