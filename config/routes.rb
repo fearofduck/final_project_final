@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "ds53_cts#index"
   # Routes for the Comment resource:
   # CREATE
   get "/comments/new", :controller => "comments", :action => "new"
