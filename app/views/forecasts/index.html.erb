@@ -183,31 +183,38 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Ds53 growth</th>
-        <th>Ds40 growth</th>
-        <th>Ds53 ct</th>
-        <th>User</th>
+        <th>Name</th>
+        <th>Dom. Container 2018 Growth</th>
+        <th>International 2018 Growth</th>
+        <th>Cycle Time Scenario</th>
         <th>Itl in 53</th>
         <th>Dc in conv</th>
         <th>Non ttx adds</th>
-        <th>Name</th>
-        <th>Cars required</th>
-        <th>Cars req greater 0</th>
         <th>Ds53 idle</th>
+        <th>Additional platforms required</th>
+        <!--<th>Cars req greater 0</th>-->
+        <th>User</th>
         <th>Actions</th>
       </tr>
 
       <% @forecasts.each do |forecast| %>
       <tr>
-        <td><%= forecast.ds53_growth %></td>
-        <td><%= forecast.ds40_growth %></td>
+        <td><%= forecast.name %></td>
+        <td><%= number_to_percentage(forecast.ds53_growth*100) %></td>
+        <td><%= number_to_percentage(forecast.ds40_growth*100) %></td>
         <td>
           <% if forecast.ds53_ct.present? %>
             <a href="/ds53_cts/<%= forecast.ds53_ct.id %>">
-              <%= forecast.ds53_ct.jan %>
+              <%= forecast.ds53_ct.name %>
             </a>
           <% end %>
         </td>
+        <td><%= number_to_percentage(forecast.itl_in_53*100, precision: 1) %></td>
+        <td><%= number_to_percentage(forecast.dc_in_conv*100, precision: 1) %></td>
+        <td><%= forecast.non_ttx_adds %></td>
+        <td><%= forecast.ds53_idle %></td>
+        <td><%= forecast.cars_required.round(0) %></td>
+        <!--<td><%= forecast.cars_req_greater_0 %></td>-->
         <td>
           <% if forecast.user.present? %>
             <a href="/users/<%= forecast.user.id %>">
@@ -215,13 +222,6 @@
             </a>
           <% end %>
         </td>
-        <td><%= forecast.itl_in_53 %></td>
-        <td><%= forecast.dc_in_conv %></td>
-        <td><%= forecast.non_ttx_adds %></td>
-        <td><%= forecast.name %></td>
-        <td><%= forecast.cars_required %></td>
-        <td><%= forecast.cars_req_greater_0 %></td>
-        <td><%= forecast.ds53_idle %></td>
         <td>
           <a href="/forecasts/<%= forecast.id %>" class="btn btn-primary">Show</a>
           <a href="/forecasts/<%= forecast.id %>/edit" class="btn btn-warning">Edit</a>

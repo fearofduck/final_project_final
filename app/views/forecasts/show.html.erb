@@ -1,26 +1,61 @@
 <div class="page-header">
-  <h3>Forecast #<%= @forecast.id %></h3>
+  <h3>Forecast: <%= @forecast.name %></h3>
 </div>
+
+<h3>
+  <% if @forecast.cars_req_greater_0 == true %>
+      <div>
+        Under these parameters it is likely that there will not be enough equipment
+      </div>
+      <div>
+        TTX would need to acquire <%= @forecast.cars_required.round(0) %> additional platforms in excess of the 2018 Plan to meet demand
+      </div>
+      <% else %>
+      <div>Current planned additions are sufficient to meet demand under this scenario</div>
+  <% end %>
+</h3>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Ds53 growth</dt>
-      <dd><%= @forecast.ds53_growth %></dd>
+      <dt>2018 Domestic Container Growth Rate</dt>
+      <dd><%= number_to_percentage(@forecast.ds53_growth*100, precision: 1) %></dd>
 
-      <dt>Ds40 growth</dt>
-      <dd><%= @forecast.ds40_growth %></dd>
+      <dt>2018 International Growth Rate</dt>
+      <dd><%= number_to_percentage(@forecast.ds40_growth*100, precision: 1) %></dd>
 
-      <dt>Ds53 ct</dt>
+      <dt>53-ft Double-stack Cycle Time Scenario</dt>
       <dd>
         <% if @forecast.ds53_ct.present? %>
           <a href="/ds53_cts/<%= @forecast.ds53_ct_id %>">
-            <%= @forecast.ds53_ct.jan %>
+            <%= @forecast.ds53_ct.name %>
           </a>
         <% end %>
       </dd>
 
-      <dt>User</dt>
+      <dt>% of international boxes travelling in 53-ft wells</dt>
+      <dd><%= number_to_percentage(@forecast.itl_in_53*100, precision: 1) %></dd>
+
+      <dt>% of domestic containers travelling on conventiona equipment</dt>
+      <dd><%= number_to_percentage(@forecast.dc_in_conv*100, precision:1) %></dd>
+
+      <dt>Non-TTX 53-ft equipment additions</dt>
+      <dd><%= @forecast.non_ttx_adds %></dd>
+
+      <!--<dt>Name</dt>-->
+      <!--<dd><%= @forecast.name %></dd>-->
+
+      <!--<dt>Cars req greater 0</dt>-->
+      <!--<dd><%= @forecast.cars_req_greater_0 %></dd>-->
+
+      <dt>TTX idle car count (in platforms)</dt>
+      <dd><%= @forecast.ds53_idle %></dd>
+
+
+      <dt>Cars required</dt>
+      <dd><%= @forecast.cars_required.round(0) %></dd>
+
+      <dt>Created by</dt>
       <dd>
         <% if @forecast.user.present? %>
           <a href="/users/<%= @forecast.user_id %>">
@@ -28,28 +63,6 @@
           </a>
         <% end %>
       </dd>
-
-      <dt>Itl in 53</dt>
-      <dd><%= @forecast.itl_in_53 %></dd>
-
-      <dt>Dc in conv</dt>
-      <dd><%= @forecast.dc_in_conv %></dd>
-
-      <dt>Non ttx adds</dt>
-      <dd><%= @forecast.non_ttx_adds %></dd>
-
-      <dt>Name</dt>
-      <dd><%= @forecast.name %></dd>
-
-      <dt>Cars required</dt>
-      <dd><%= @forecast.cars_required %></dd>
-
-      <dt>Cars req greater 0</dt>
-      <dd><%= @forecast.cars_req_greater_0 %></dd>
-
-      <dt>Ds53 idle</dt>
-      <dd><%= @forecast.ds53_idle %></dd>
-
     </dl>
 
     <div class="btn-group btn-group-justified">
@@ -77,9 +90,15 @@
 
       <% @forecast.comments.each do |comment| %>
         <li class="list-group-item">
-          <a href="/comments/<%= comment.id %>">
-            <%= comment.user_id %>
-          </a>
+          <!--<a href="/comments/<%= comment.id %>">-->
+          <!--  <%= comment.user_id %>-->
+          <!--</a>-->
+          <div class="btn-group">
+            <%= comment.body %>
+          </div>
+          <div class="btn-group">
+            <%= User.find_by(:id => comment.user_id).email %>
+          </div>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/comments/<%= comment.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
@@ -93,6 +112,10 @@
           </div>
         </li>
       <% end %>
+      
+      <li class="list-group-item list-group-item-info">
+        Add a comment
+      </li>      
 
       <li class="list-group-item">
         <form action="/create_comment" method="post">
@@ -101,11 +124,11 @@
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
+        <!--<label for="user_id" class="control-label">-->
+        <!--  User-->
+        <!--</label>-->
 
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :email), :class => "form-control") %>
+         <input type="hidden" id="user_id" name="user_id" placeholder="User_id" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <!-- Label and input for forecast_id -->
@@ -114,7 +137,7 @@
       <!-- Label and input for body -->
       <div class="form-group">
         <label for="body" class="control-label">
-          Body
+          Add your comment below
         </label>
 
         <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"></textarea>

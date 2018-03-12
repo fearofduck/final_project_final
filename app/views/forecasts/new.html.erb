@@ -18,69 +18,6 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for ds53_growth -->
-      <div class="form-group">
-        <label for="ds53_growth" class="control-label">
-          Ds53 growth
-        </label>
-
-        <input type="text" id="ds53_growth" name="ds53_growth" placeholder="Ds53 growth" class="form-control" value="<%= @forecast.ds53_growth %>">
-      </div>
-
-      <!-- Label and input for ds40_growth -->
-      <div class="form-group">
-        <label for="ds40_growth" class="control-label">
-          Ds40 growth
-        </label>
-
-        <input type="text" id="ds40_growth" name="ds40_growth" placeholder="Ds40 growth" class="form-control" value="<%= @forecast.ds40_growth %>">
-      </div>
-
-      <!-- Label and input for ds53_ct_id -->
-      <div class="form-group">
-        <label for="ds53_ct_id" class="control-label">
-          Ds53 ct
-        </label>
-
-        <%= select_tag(:ds53_ct_id, options_from_collection_for_select(Ds53Ct.all, :id, :jan, @forecast.ds53_ct_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :email, @forecast.user_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for itl_in_53 -->
-      <div class="form-group">
-        <label for="itl_in_53" class="control-label">
-          Itl in 53
-        </label>
-
-        <input type="text" id="itl_in_53" name="itl_in_53" placeholder="Itl in 53" class="form-control" value="<%= @forecast.itl_in_53 %>">
-      </div>
-
-      <!-- Label and input for dc_in_conv -->
-      <div class="form-group">
-        <label for="dc_in_conv" class="control-label">
-          Dc in conv
-        </label>
-
-        <input type="text" id="dc_in_conv" name="dc_in_conv" placeholder="Dc in conv" class="form-control" value="<%= @forecast.dc_in_conv %>">
-      </div>
-
-      <!-- Label and input for non_ttx_adds -->
-      <div class="form-group">
-        <label for="non_ttx_adds" class="control-label">
-          Non ttx adds
-        </label>
-
-        <input type="text" id="non_ttx_adds" name="non_ttx_adds" placeholder="Non ttx adds" class="form-control" value="<%= @forecast.non_ttx_adds %>">
-      </div>
-
       <!-- Label and input for name -->
       <div class="form-group">
         <label for="name" class="control-label">
@@ -90,30 +27,89 @@
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @forecast.name %>">
       </div>
 
-      <!-- Label and input for cars_required -->
+      <!-- Label and input for ds53_growth -->
       <div class="form-group">
-        <label for="cars_required" class="control-label">
-          Cars required
+        <label for="ds53_growth" class="control-label">
+          2018 Domestic Container Load Growth
         </label>
 
-        <input type="text" id="cars_required" name="cars_required" placeholder="Cars required" class="form-control" value="<%= @forecast.cars_required %>">
+        <input type="decimal" id="ds53_growth" name="ds53_growth" placeholder="Ds53 growth" class="form-control" value="0.032">
       </div>
+
+      <!-- Label and input for ds40_growth -->
+      <div class="form-group">
+        <label for="ds40_growth" class="control-label">
+          2018 International Load Growth
+        </label>
+
+        <input type="decimal" id="ds40_growth" name="ds40_growth" placeholder="Ds40 growth" class="form-control" value="0.023">
+      </div>
+
+      <!-- Label and input for ds53_ct_id -->
+      <div class="form-group">
+        <label for="ds53_ct_id" class="control-label">
+          53-ft Double-stack Cycle Time Scenario
+        </label>
+
+        <%= select_tag(:ds53_ct_id, options_from_collection_for_select(Ds53Ct.all, :id, :name, @forecast.ds53_ct_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+         <input type="hidden" id="user_id" name="user_id" placeholder="User_id" class="form-control" value="<%= current_user.id %>">
+      </div>
+
+      <!-- Label and input for itl_in_53 -->
+      <div class="form-group">
+        <label for="itl_in_53" class="control-label">
+          % of International Boxes in 53-ft Equipment
+        </label>
+
+        <input type="decimal" id="itl_in_53" name="itl_in_53" placeholder="Itl in 53" class="form-control" value="0.304">
+      </div>
+
+      <!-- Label and input for dc_in_conv -->
+      <div class="form-group">
+        <label for="dc_in_conv" class="control-label">
+          % of Domestic Containers Carried on Conventional Equipment
+        </label>
+
+        <input type="decimal" id="dc_in_conv" name="dc_in_conv" placeholder="Dc in conv" class="form-control" value="0.074">
+      </div>
+
+      <!-- Label and input for non_ttx_adds -->
+      <div class="form-group">
+        <label for="non_ttx_adds" class="control-label">
+          Number of Non-TTX 53-ft Additions in 2018 (in Platforms)
+        </label>
+
+        <input type="text" id="non_ttx_adds" name="non_ttx_adds" placeholder="Non ttx adds" class="form-control" value="450">
+      </div>
+
+      <!-- Label and input for cars_required -->
+      <!--<div class="form-group">-->
+      <!--  <label for="cars_required" class="control-label">-->
+      <!--    Cars required-->
+      <!--  </label>-->
+
+      <!--  <input type="text" id="cars_required" name="cars_required" placeholder="Cars required" class="form-control" value="<%= @forecast.cars_required %>">-->
+      <!--</div>-->
 
       <!-- Label and input for cars_req_greater_0 -->
-      <div class="checkbox">
-        <label for="cars_req_greater_0">
-          <input type="checkbox" id="cars_req_greater_0" name="cars_req_greater_0" value="1" <%= "checked" if @forecast.cars_req_greater_0 %>>
-          Cars req greater 0
-        </label>
-      </div>
+      <!--<div class="checkbox">-->
+      <!--  <label for="cars_req_greater_0">-->
+      <!--    <input type="checkbox" id="cars_req_greater_0" name="cars_req_greater_0" value="1" <%= "checked" if @forecast.cars_req_greater_0 %>>-->
+      <!--    Cars req greater 0-->
+      <!--  </label>-->
+      <!--</div>-->
 
       <!-- Label and input for ds53_idle -->
       <div class="form-group">
         <label for="ds53_idle" class="control-label">
-          Ds53 idle
+          Number of TTX Idle Cars in Platforms
         </label>
 
-        <input type="text" id="ds53_idle" name="ds53_idle" placeholder="Ds53 idle" class="form-control" value="<%= @forecast.ds53_idle %>">
+        <input type="integer" id="ds53_idle" name="ds53_idle" placeholder="Ds53 idle" class="form-control" value="3558">
       </div>
 
       <button class="btn btn-success">

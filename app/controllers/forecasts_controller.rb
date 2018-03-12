@@ -30,9 +30,11 @@ class ForecastsController < ApplicationController
     @forecast.dc_in_conv = params[:dc_in_conv]
     @forecast.non_ttx_adds = params[:non_ttx_adds]
     @forecast.name = params[:name]
-    @forecast.cars_required = params[:cars_required]
-    @forecast.cars_req_greater_0 = params[:cars_req_greater_0]
     @forecast.ds53_idle = params[:ds53_idle]
+    loads = ((1-@forecast.dc_in_conv)*(1+@forecast.ds53_growth)*7561462*0.0937+@forecast.itl_in_53*(1+ @forecast.ds40_growth)*9067555*0.0888)
+    ct = Ds53Ct.find_by(:id => @forecast.ds53_ct_id).oct
+    @forecast.cars_required = loads*ct/31/0.88077-(34834+@forecast.non_ttx_adds)+@forecast.ds53_idle-131189
+    @forecast.cars_req_greater_0 =  @forecast.cars_required > 0
 
     save_status = @forecast.save
 
@@ -41,7 +43,7 @@ class ForecastsController < ApplicationController
 
       case referer
       when "/forecasts/new", "/create_forecast"
-        redirect_to("/forecasts")
+        redirect_to("/forecasts/"+@forecast.id.to_s)
       else
         redirect_back(:fallback_location => "/", :notice => "Forecast created successfully.")
       end

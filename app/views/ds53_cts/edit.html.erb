@@ -18,6 +18,15 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @ds53_ct.name %>">
+      </div>
+
       <!-- Label and input for jan -->
       <div class="form-group">
         <label for="jan" class="control-label">
@@ -126,20 +135,14 @@
         <input type="text" id="dec" name="dec" placeholder="Dec" class="form-control" value="<%= @ds53_ct.dec %>">
       </div>
 
-      <!-- Label and input for name -->
+      <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="name" class="control-label">
-          Name
-        </label>
-
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @ds53_ct.name %>">
-      </div>
-
-      
+        <input type="hidden" id="user_id" name="user_id" placeholder="User_id" class="form-control" value="<%= current_user.id %>">
+      </div>      
       
 
       <button class="btn btn-warning">
-        Update Ds53 Ct
+        Update 53-ft Double-stack Cycle Time
       </button>
       or
       <a href="/ds53_cts/<%= @ds53_ct.id %>">Cancel</a>
