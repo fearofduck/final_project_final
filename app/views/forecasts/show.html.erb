@@ -17,7 +17,7 @@
 
 <div class="row">
   <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
+    <dl class="d1-horizontal">
       <dt>2018 Domestic Container Growth Rate</dt>
       <dd><%= number_to_percentage(@forecast.ds53_growth*100, precision: 1) %></dd>
 
@@ -69,12 +69,16 @@
       <a href="/forecasts" class="btn btn-primary">
         Back
       </a>
+      <% if @forecast.user_id == current_user.id %>
       <a href="/forecasts/<%= @forecast.id %>/edit" class="btn btn-warning">
         Edit
       </a>
+      <% end %>
+      <% if @forecast.user_id == current_user.id %>
       <a href="/delete_forecast/<%= @forecast.id %>" class="btn btn-danger" rel="nofollow">
         Delete
       </a>
+      <% end %>
     </div>
   </div>
 </div>
@@ -93,11 +97,11 @@
           <!--<a href="/comments/<%= comment.id %>">-->
           <!--  <%= comment.user_id %>-->
           <!--</a>-->
-          <div class="btn-group">
+          <div class="btn-group" aria-label="First group">
             <%= comment.body %>
           </div>
-          <div class="btn-group">
-            <%= User.find_by(:id => comment.user_id).email %>
+          <div class="btn-group" aria-lable="Second group">
+                  -<%= User.find_by(:id => comment.user_id).email %>
           </div>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/comments/<%= comment.id %>" class="btn btn-primary">

@@ -102,15 +102,19 @@
         <td>
           <% if comment.forecast.present? %>
             <a href="/forecasts/<%= comment.forecast.id %>">
-              <%= comment.forecast.ds53_growth %>
+              <%= comment.forecast.name %>
             </a>
           <% end %>
         </td>
         <td><%= comment.body %></td>
         <td>
           <a href="/comments/<%= comment.id %>" class="btn btn-primary">Show</a>
+          <% if comment.user_id == current_user.id %>
           <a href="/comments/<%= comment.id %>/edit" class="btn btn-warning">Edit</a>
+          <% end %>
+          <% if comment.user_id == current_user.id %>
           <a href="/delete_comment/<%= comment.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

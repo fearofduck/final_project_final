@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>User #<%= @user.id %></h3>
+  <h3>User: <%= @user.email %></h3>
 </div>
 
 <div class="row">
@@ -8,8 +8,6 @@
       <dt>Email</dt>
       <dd><%= @user.email %></dd>
 
-      <dt>Password</dt>
-      <dd><%= @user.password %></dd>
 
     </dl>
 
@@ -27,13 +25,13 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Ds53 Cts
+        53-ft Double-stack cycle time scenarios
       </li>
 
       <% @user.ds53_cts.each do |ds53_ct| %>
         <li class="list-group-item">
           <a href="/ds53_cts/<%= ds53_ct.id %>">
-            <%= ds53_ct.jan %>
+            <%= ds53_ct.name %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/ds53_cts/<%= ds53_ct.id %>" class="btn btn-primary">
@@ -60,13 +58,13 @@
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Forecasts
+        User Forecasts
       </li>
 
       <% @user.forecasts.each do |forecast| %>
         <li class="list-group-item">
           <a href="/forecasts/<%= forecast.id %>">
-            <%= forecast.ds53_growth %>
+            <%= forecast.name %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/forecasts/<%= forecast.id %>" class="btn btn-primary">
@@ -99,7 +97,7 @@
       <% @user.comments.each do |comment| %>
         <li class="list-group-item">
           <a href="/comments/<%= comment.id %>">
-            <%= comment.user_id %>
+            <%= comment.body %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/comments/<%= comment.id %>" class="btn btn-primary">

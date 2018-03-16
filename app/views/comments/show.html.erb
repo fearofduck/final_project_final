@@ -18,7 +18,7 @@
       <dd>
         <% if @comment.forecast.present? %>
           <a href="/forecasts/<%= @comment.forecast_id %>">
-            <%= @comment.forecast.ds53_growth %>
+            <%= @comment.forecast.name %>
           </a>
         <% end %>
       </dd>
@@ -32,12 +32,16 @@
       <a href="/comments" class="btn btn-primary">
         Back
       </a>
+      <% if @comment.user_id == current_user.id %>
       <a href="/comments/<%= @comment.id %>/edit" class="btn btn-warning">
         Edit
       </a>
+      <% end %>
+      <% if @comment.user_id == current_user.id %>
       <a href="/delete_comment/<%= @comment.id %>" class="btn btn-danger" rel="nofollow">
         Delete
       </a>
+      <% end %>
     </div>
   </div>
 </div>

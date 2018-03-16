@@ -56,7 +56,7 @@ class Ds53CtsController < ApplicationController
       when "/ds53_cts/new", "/create_ds53_ct"
         redirect_to("/ds53_cts")
       else
-        redirect_back(:fallback_location => "/", :notice => "Ds53 ct created successfully.")
+        redirect_back(:fallback_location => "/", :notice => "53-foot cycle time scenario created successfully.")
       end
     else
       render("ds53_cts/new.html.erb")
@@ -94,9 +94,9 @@ class Ds53CtsController < ApplicationController
 
       case referer
       when "/ds53_cts/#{@ds53_ct.id}/edit", "/update_ds53_ct"
-        redirect_to("/ds53_cts/#{@ds53_ct.id}", :notice => "Ds53 ct updated successfully.")
+        redirect_to("/ds53_cts/#{@ds53_ct.id}", :notice => "53-foot cycle time scenario updated successfully.")
       else
-        redirect_back(:fallback_location => "/", :notice => "Ds53 ct updated successfully.")
+        redirect_back(:fallback_location => "/", :notice => "53-foot cycle time scenario updated successfully.")
       end
     else
       render("ds53_cts/edit.html.erb")
@@ -109,9 +109,9 @@ class Ds53CtsController < ApplicationController
     @ds53_ct.destroy
 
     if URI(request.referer).path == "/ds53_cts/#{@ds53_ct.id}"
-      redirect_to("/", :notice => "Ds53 ct deleted.")
+      redirect_to("/", :notice => "53-foot cycle time scenario deleted.")
     else
-      redirect_back(:fallback_location => "/", :notice => "Ds53 ct deleted.")
+      redirect_back(:fallback_location => "/", :notice => "53-foot cycle time scenario deleted.")
     end
   end
 end

@@ -224,8 +224,12 @@
         </td>
         <td>
           <a href="/forecasts/<%= forecast.id %>" class="btn btn-primary">Show</a>
+          <% if forecast.user_id == current_user.id %>
           <a href="/forecasts/<%= forecast.id %>/edit" class="btn btn-warning">Edit</a>
+          <% end %>
+          <% if forecast.user_id == current_user.id %>
           <a href="/delete_forecast/<%= forecast.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

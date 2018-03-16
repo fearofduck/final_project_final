@@ -41,10 +41,10 @@
       <dt>Dec</dt>
       <dd><%= @ds53_ct.dec %></dd>
 
-      <dt>Name</dt>
-      <dd><%= @ds53_ct.name %></dd>
+      <!--<dt>Name</dt>-->
+      <!--<dd><%= @ds53_ct.name %></dd>-->
 
-      <dt>User</dt>
+      <dt>Created by</dt>
       <dd>
         <% if @ds53_ct.user.present? %>
           <a href="/users/<%= @ds53_ct.user_id %>">
@@ -52,6 +52,9 @@
           </a>
         <% end %>
       </dd>
+      
+      <dt>Created on</dt>
+      <dd><%= @ds53_ct.created_at %></dd>
 
     </dl>
 
@@ -83,7 +86,7 @@
       <% @ds53_ct.forecasts.each do |forecast| %>
         <li class="list-group-item">
           <a href="/forecasts/<%= forecast.id %>">
-            <%= forecast.ds53_growth %>
+            <%= forecast.name %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/forecasts/<%= forecast.id %>" class="btn btn-primary">
@@ -107,99 +110,96 @@
       <!-- Label and input for ds53_growth -->
       <div class="form-group">
         <label for="ds53_growth" class="control-label">
-          Ds53 growth
+          2018 Domestic Container Growth Rate
         </label>
 
-        <input type="text" id="ds53_growth" name="ds53_growth" placeholder="Ds53 growth" class="form-control" value="">
+        <input type="decimal" id="ds53_growth" name="ds53_growth" placeholder="Ds53 growth" class="form-control" value="0.032">
       </div>
 
       <!-- Label and input for ds40_growth -->
       <div class="form-group">
         <label for="ds40_growth" class="control-label">
-          Ds40 growth
+          2018 International Growth Rate
         </label>
 
-        <input type="text" id="ds40_growth" name="ds40_growth" placeholder="Ds40 growth" class="form-control" value="">
+        <input type="decimal" id="ds40_growth" name="ds40_growth" placeholder="Ds40 growth" class="form-control" value="0.023">
       </div>
 
       <!-- Label and input for ds53_ct_id -->
       <div class="form-group">
         <label for="ds53_ct_id" class="control-label">
-          Ds53 ct
+          53-ft Double-Stack Cycle Time Scenario
         </label>
 
-        <%= select_tag(:ds53_ct_id, options_from_collection_for_select(Ds53Ct.all, :id, :jan), :class => "form-control") %>
+        <%= select_tag(:ds53_ct_id, options_from_collection_for_select(Ds53Ct.all, :id, :name), :class => "form-control") %>
       </div>
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
 
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :email), :class => "form-control") %>
+        <input type="hidden" id="user_id" name="user_id" class="form-control" value="current_user.id">
       </div>
 
       <!-- Label and input for itl_in_53 -->
       <div class="form-group">
         <label for="itl_in_53" class="control-label">
-          Itl in 53
+          % of 40-ft containers in 53-ft wells
         </label>
 
-        <input type="text" id="itl_in_53" name="itl_in_53" placeholder="Itl in 53" class="form-control" value="">
+        <input type="decimal" id="itl_in_53" name="itl_in_53" placeholder="Itl in 53" class="form-control" value="0.304">
       </div>
 
       <!-- Label and input for dc_in_conv -->
       <div class="form-group">
         <label for="dc_in_conv" class="control-label">
-          Dc in conv
+          % of domestic containers in conventional equipment
         </label>
 
-        <input type="text" id="dc_in_conv" name="dc_in_conv" placeholder="Dc in conv" class="form-control" value="">
+        <input type="decimal" id="dc_in_conv" name="dc_in_conv" placeholder="Dc in conv" class="form-control" value="0.074">
       </div>
 
       <!-- Label and input for non_ttx_adds -->
       <div class="form-group">
         <label for="non_ttx_adds" class="control-label">
-          Non ttx adds
+          Non-TTX 53-ft additions (in platforms)
         </label>
 
-        <input type="text" id="non_ttx_adds" name="non_ttx_adds" placeholder="Non ttx adds" class="form-control" value="">
+        <input type="text" id="non_ttx_adds" name="non_ttx_adds" placeholder="Non ttx adds" class="form-control" value="450">
       </div>
 
       <!-- Label and input for name -->
       <div class="form-group">
         <label for="name" class="control-label">
-          Name
+          Forecast name
         </label>
 
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
       </div>
 
       <!-- Label and input for cars_required -->
-      <div class="form-group">
-        <label for="cars_required" class="control-label">
-          Cars required
-        </label>
+      <!--<div class="form-group">-->
+      <!--  <label for="cars_required" class="control-label">-->
+      <!--    Cars required-->
+      <!--  </label>-->
 
-        <input type="text" id="cars_required" name="cars_required" placeholder="Cars required" class="form-control" value="">
-      </div>
+      <!--  <input type="text" id="cars_required" name="cars_required" placeholder="Cars required" class="form-control" value="">-->
+      <!--</div>-->
 
       <!-- Label and input for cars_req_greater_0 -->
-      <div class="checkbox">
-        <label for="cars_req_greater_0">
-          <input type="checkbox" id="cars_req_greater_0" name="cars_req_greater_0" value="1" <%= "checked" if @forecast.cars_req_greater_0 %>>
-          Cars req greater 0
-        </label>
-      </div>
+      <!--<div class="checkbox">-->
+      <!--  <label for="cars_req_greater_0">-->
+      <!--    <input type="checkbox" id="cars_req_greater_0" name="cars_req_greater_0" value="1" <%= "checked" if @forecast.cars_req_greater_0 %>>-->
+      <!--    Cars req greater 0-->
+      <!--  </label>-->
+      <!--</div>-->
 
       <!-- Label and input for ds53_idle -->
       <div class="form-group">
         <label for="ds53_idle" class="control-label">
-          Ds53 idle
+          53-ft Idle car count (in platforms)
         </label>
 
-        <input type="text" id="ds53_idle" name="ds53_idle" placeholder="Ds53 idle" class="form-control" value="">
+        <input type="text" id="ds53_idle" name="ds53_idle" placeholder="Ds53 idle" class="form-control" value="3558">
       </div>
 
       <button class="btn btn-block btn-success">
